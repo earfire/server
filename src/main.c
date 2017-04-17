@@ -7,7 +7,7 @@
 
 #include "parser.h"
 
-int	portint 		= 9999;
+int portint			= 9999;
 int threadnumint	= 2;
 char *teststr 		= 0;
 
