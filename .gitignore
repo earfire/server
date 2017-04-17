@@ -1,0 +1,6 @@
+server
+tags
+parser.h
+parser.lex.c
+parser.tab.c
+*.o
