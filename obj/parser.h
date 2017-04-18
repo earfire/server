@@ -50,9 +50,10 @@ extern int yydebug;
     TEST = 260,
     PORT = 261,
     THREADNUM = 262,
-    STATE = 263,
-    NUMBER = 264,
-    WORD = 265
+    DAEMONIZE = 263,
+    STATE = 264,
+    NUMBER = 265,
+    WORD = 266
   };
 #endif
 /* Tokens.  */
@@ -61,21 +62,22 @@ extern int yydebug;
 #define TEST 260
 #define PORT 261
 #define THREADNUM 262
-#define STATE 263
-#define NUMBER 264
-#define WORD 265
+#define DAEMONIZE 263
+#define STATE 264
+#define NUMBER 265
+#define WORD 266
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 29 "tool/parser.y" /* yacc.c:1909  */
+#line 30 "tool/parser.y" /* yacc.c:1909  */
 
-	int number;
-	char *string;
+    int number;
+    char *string;
 
-#line 79 "obj/parser.h" /* yacc.c:1909  */
+#line 81 "obj/parser.h" /* yacc.c:1909  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
