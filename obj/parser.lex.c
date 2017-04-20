@@ -483,8 +483,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "tool/parser.l"
-#line 3 "tool/parser.l"
+#line 1 "util/parser.l"
+#line 3 "util/parser.l"
 #include <stdio.h>
 #include <string.h>
 #include "parser.h"
@@ -706,7 +706,7 @@ YY_DECL
 		}
 
 	{
-#line 9 "tool/parser.l"
+#line 9 "util/parser.l"
 
 #line 712 "obj/parser.lex.c"
 
@@ -768,74 +768,74 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 10 "tool/parser.l"
+#line 10 "util/parser.l"
 BEGIN(comment);
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 11 "tool/parser.l"
+#line 11 "util/parser.l"
 
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 12 "tool/parser.l"
+#line 12 "util/parser.l"
 {yylineno++;	BEGIN(INITIAL);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 13 "tool/parser.l"
+#line 13 "util/parser.l"
 return SHARP;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 14 "tool/parser.l"
+#line 14 "util/parser.l"
 yylval.number=atoi(yytext); return NUMBER;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 15 "tool/parser.l"
+#line 15 "util/parser.l"
 return TEST;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 16 "tool/parser.l"
+#line 16 "util/parser.l"
 return PORT;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 17 "tool/parser.l"
+#line 17 "util/parser.l"
 return THREADNUM;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 18 "tool/parser.l"
+#line 18 "util/parser.l"
 return DAEMONIZE;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 19 "tool/parser.l"
+#line 19 "util/parser.l"
 return EQUAL;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 20 "tool/parser.l"
+#line 20 "util/parser.l"
 yylval.string=strdup(yytext);return WORD;
 	YY_BREAK
 case 12:
 /* rule 12 can match eol */
 YY_RULE_SETUP
-#line 21 "tool/parser.l"
+#line 21 "util/parser.l"
 yylineno++; /* ignore end of line */;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 22 "tool/parser.l"
+#line 22 "util/parser.l"
 /* ignore whitespace */;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 23 "tool/parser.l"
+#line 23 "util/parser.l"
 ECHO;
 	YY_BREAK
 #line 842 "obj/parser.lex.c"
@@ -1800,7 +1800,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 22 "tool/parser.l"
+#line 22 "util/parser.l"
 
 
 

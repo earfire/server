@@ -62,7 +62,7 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "tool/parser.y" /* yacc.c:339  */
+#line 1 "util/parser.y" /* yacc.c:339  */
 
 #include <stdio.h>
 #include <string.h>
@@ -150,7 +150,7 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 30 "tool/parser.y" /* yacc.c:355  */
+#line 30 "util/parser.y" /* yacc.c:355  */
 
     int number;
     char *string;
@@ -1245,7 +1245,7 @@ yyreduce:
   switch (yyn)
     {
         case 8:
-#line 51 "tool/parser.y" /* yacc.c:1646  */
+#line 51 "util/parser.y" /* yacc.c:1646  */
     {
         printf("test is %s\n", (yyvsp[0].string));
         teststr = strdup((yyvsp[0].string));
@@ -1254,7 +1254,7 @@ yyreduce:
     break;
 
   case 9:
-#line 59 "tool/parser.y" /* yacc.c:1646  */
+#line 59 "util/parser.y" /* yacc.c:1646  */
     {
         printf("port is %d\n", (yyvsp[0].number));
         portint = (yyvsp[0].number);
@@ -1263,7 +1263,7 @@ yyreduce:
     break;
 
   case 10:
-#line 67 "tool/parser.y" /* yacc.c:1646  */
+#line 67 "util/parser.y" /* yacc.c:1646  */
     {
         printf("threadnum is %d\n", (yyvsp[0].number));
         threadnumint = (yyvsp[0].number);
@@ -1272,7 +1272,7 @@ yyreduce:
     break;
 
   case 11:
-#line 75 "tool/parser.y" /* yacc.c:1646  */
+#line 75 "util/parser.y" /* yacc.c:1646  */
     {
         printf("daemonize is %d\n", (yyvsp[0].number));
         daemonizeint = (yyvsp[0].number);

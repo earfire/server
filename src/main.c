@@ -8,7 +8,7 @@
 
 #include "parser.h"
 
-#define DEFAULT_CONFILE_PATH "conf/server.conf"
+#define SERVER_CONF "conf/server.conf"
 int portint			= 9999;
 int threadnumint	= 2;
 int daemonizeint    = 0;
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     int ret;
 
     if (argc == 1) {
-        fd = open (DEFAULT_CONFILE_PATH, O_RDONLY);
+        fd = open (SERVER_CONF, O_RDONLY);
     } else if (argc == 2) {
         fd = open (argv[1], O_RDONLY);
     } else {
@@ -53,11 +53,11 @@ int main(int argc, char *argv[])
     }
 
     /* initialize main thread libevent instance */
-    main_base = event_init();
+    //main_base = event_init();
 
     /* initialize other stuff */
     /** logger_init(); **/
-    conn_init();
+    //conn_init();
     return 0;
 }
 

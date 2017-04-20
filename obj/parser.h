@@ -72,7 +72,7 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 30 "tool/parser.y" /* yacc.c:1909  */
+#line 30 "util/parser.y" /* yacc.c:1909  */
 
     int number;
     char *string;

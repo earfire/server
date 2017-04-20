@@ -4,7 +4,7 @@ CFALGS = -Wall -O2 -g
 
 SDIR = src
 ODIR = obj
-TDIR = tool
+TDIR = util
 
 IDIR = -I$(SDIR) -I$(ODIR) -I$(TDIR)
 LDIR = -Llib
