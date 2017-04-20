@@ -5,8 +5,11 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <signal.h>
+#include <event.h>
 
 #include "parser.h"
+#include "settings.h"
+#include "thread.h"
 
 #define SERVER_CONF "conf/server.conf"
 int portint			= 9999;
@@ -14,6 +17,8 @@ int threadnumint	= 2;
 int daemonizeint    = 0;
 char *teststr 		= 0;
 
+static struct event_base *main_base;
+int max_fds;
 
 static void sig_handler(const int sig) {
     printf("Signal handled: %s.\n", strsignal(sig));
@@ -53,11 +58,13 @@ int main(int argc, char *argv[])
     }
 
     /* initialize main thread libevent instance */
-    //main_base = event_init();
+    main_base = event_init();
 
     /* initialize other stuff */
     /** logger_init(); **/
-    //conn_init();
+    conn_init();
+
+    thread_init(settings.num_threads);
     return 0;
 }
 
