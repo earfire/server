@@ -64,7 +64,7 @@ portassign:
 threadnumassign:
     THREADNUM EQUAL NUMBER
     {
-        printf("threadnum is %d\n", $3);
+        printf("num_threads is %d\n", $3);
         settings.num_threads = $3;
     }
     ;

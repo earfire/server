@@ -129,7 +129,7 @@ static void thread_worker_process(int fd, short which, void *arg)
     case 'c':
         item = cq_pop(me->conn_queue);
         if (item != NULL) {
-            printf("cq_pop sock fd = %d\n", item->sfd);
+            printf("cq_pop new sock fd = %d\n", item->sfd);
         }
         cqi_free(item);
     }
