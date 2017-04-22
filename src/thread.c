@@ -128,10 +128,19 @@ static void thread_worker_process(int fd, short which, void *arg)
     switch(buf[0]) {
     case 'c':
         item = cq_pop(me->conn_queue);
+
         if (item != NULL) {
-            printf("cq_pop new sock fd = %d\n", item->sfd);
+            conn *c = conn_new(item->sfd, item->init_state, item->event_flags,
+                                me->base);
+            if (c == NULL) {
+                close(item->sfd);
+            } else {
+                c->thread = me;
+            }
+        } else {
+            cqi_free(item);
         }
-        cqi_free(item);
+        break;
     }
 }
 

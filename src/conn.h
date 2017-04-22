@@ -42,7 +42,7 @@ typedef struct {
 typedef struct conn conn;
 struct conn {
     int sfd;
-    int state;
+    enum conn_states state;
     //Buffer *buf;
     struct event_base *ev_base;
     struct event event;
@@ -54,4 +54,7 @@ struct conn {
 
 void conn_init(void);
 int socket_init(int port);
+conn *conn_new(const int sfd, enum conn_states init_status,
+                      const int event_flags,
+                      struct event_base *base);
 #endif
