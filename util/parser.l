@@ -16,6 +16,7 @@ test                        return TEST;
 port                        return PORT;
 threadnum                   return THREADNUM;
 daemonize                   return DAEMONIZE;
+maxconns                    return MAXCONNS;
 =                           return EQUAL;
 [a-zA-Z:\\\?/\*\._0-9\[\-\]]+   yylval.string=strdup(yytext);return WORD;
 \n                          yylineno++; /* ignore end of line */;

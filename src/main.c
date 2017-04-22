@@ -5,30 +5,39 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <signal.h>
+#include <string.h>
 #include <event.h>
 
 #include "parser.h"
-#include "settings.h"
+#include "conn.h"
 #include "thread.h"
 
 #define SERVER_CONF "conf/server.conf"
-int portint			= 9999;
-int threadnumint	= 2;
-int daemonizeint    = 0;
-char *teststr 		= 0;
 
-static struct event_base *main_base;
+
+struct event_base *main_base;
+struct settings settings;
 int max_fds;
+
+
 
 static void sig_handler(const int sig) {
     printf("Signal handled: %s.\n", strsignal(sig));
     exit(EXIT_SUCCESS);
 }
 
+static int sigignore(int sig) {
+    struct sigaction sa = { .sa_handler = SIG_IGN, .sa_flags = 0 };
+
+    if (sigemptyset(&sa.sa_mask) == -1 || sigaction(sig, &sa, 0) == -1) {
+        return -1;
+    }
+    return 0;
+}
+
 int main(int argc, char *argv[])
 {
     int fd;
-    int ret;
 
     if (argc == 1) {
         fd = open (SERVER_CONF, O_RDONLY);
@@ -50,10 +59,15 @@ int main(int argc, char *argv[])
     signal(SIGINT, sig_handler);
     signal(SIGTERM, sig_handler);
 
+    if (sigignore(SIGPIPE) == -1) {
+        perror("failed to ignore SIGPIPE; sigaction");
+        exit(1);
+    }
+
     /* set stderr non-buffering (for running under, say, daemontools) */
     setbuf(stderr, NULL);
 
-    if (daemonizeint) {
+    if (settings.daemonize) {
         /** TODO **/
     }
 
@@ -65,6 +79,17 @@ int main(int argc, char *argv[])
     conn_init();
 
     thread_init(settings.num_threads);
+
+    if (socket_init(settings.port) == -1) {
+        fprintf(stderr, "socket_init() error.\n");
+        exit(1);
+    }
+
+    if (event_base_loop(main_base, 0) != 0)  {
+        fprintf(stderr, "event_base_loop() error.\n");
+        exit(1);
+    }
+ 
     return 0;
 }
 

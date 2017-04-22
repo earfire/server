@@ -3,6 +3,8 @@
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include "settings.h"
+
 extern int yylineno;
 extern char *yytext;
 extern int yylex();
@@ -17,14 +19,11 @@ int yywrap()
     return 1;
 }
 
+extern struct settings settings;
 
-extern char *teststr;
-extern int portint;
-extern int threadnumint;
-extern int daemonizeint;
 %}
 
-%token	SHARP EQUAL TEST PORT THREADNUM DAEMONIZE
+%token	SHARP EQUAL TEST PORT THREADNUM DAEMONIZE MAXCONNS
 
 %union
 {
@@ -44,13 +43,13 @@ commands:
 
 
 command:
-    testassign | portassign | threadnumassign | daemonizeassign
+    testassign | portassign | threadnumassign | daemonizeassign | maxconnsassign
 
 testassign:
     TEST EQUAL WORD
     {
         printf("test is %s\n", $3);
-        teststr = strdup($3);
+        settings.test = strdup($3);
     }
     ;
 
@@ -58,7 +57,7 @@ portassign:
     PORT EQUAL NUMBER
     {
         printf("port is %d\n", $3);
-        portint = $3;
+        settings.port = $3;
     }
     ;
 
@@ -66,7 +65,7 @@ threadnumassign:
     THREADNUM EQUAL NUMBER
     {
         printf("threadnum is %d\n", $3);
-        threadnumint = $3;
+        settings.num_threads = $3;
     }
     ;
 
@@ -74,6 +73,13 @@ daemonizeassign:
     DAEMONIZE EQUAL NUMBER
     {
         printf("daemonize is %d\n", $3);
-        daemonizeint = $3;
+        settings.daemonize = $3;
+    }
+    ;
+maxconnsassign:
+    MAXCONNS EQUAL NUMBER
+    {
+        printf("maxconns is %d\n", $3);
+        settings.maxconns = $3;
     }
     ;

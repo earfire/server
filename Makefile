@@ -1,6 +1,6 @@
 ALL: parser server 
 CC = gcc
-CFALGS = -Wall -O2 -g 
+CFLAGS = -Wall -g 
 
 SDIR = src
 ODIR = obj
@@ -8,7 +8,7 @@ TDIR = util
 
 IDIR = -I$(SDIR) -I$(ODIR) -I$(TDIR)
 LDIR = -Llib
-LIBS = -lpthread
+LIBS = -lpthread -levent
 
 SRCS = $(wildcard $(SDIR)/*.c)
 OBJS = $(patsubst $(SDIR)/%.c,$(ODIR)/%.o,$(wildcard $(SDIR)/*.c))
@@ -26,8 +26,8 @@ $(ODIR)/%.o:$(SDIR)/%.c
 
 
 server: $(OBJS)
-	$(CC) -o server $(CFLAGS) $(OBJS) $(IDIR) \
-	$(PARSER_OBJ)
+	$(CC) -o server $(CFLAGS) $(OBJS) $(IDIR) $(PARSER_OBJ) \
+	$(LIBS)
 
 
 clean:
